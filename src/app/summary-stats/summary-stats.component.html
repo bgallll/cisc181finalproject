@@ -1,12 +1,8 @@
 <div>
-    <textarea
-        id="number-list"
-        placeholder="Enter numbers separated by commas"
-    ></textarea>
-
-    <button id="calculate-statistics-button">Calculate Statistics</button>
-
     <div id="statistics-results">
+        <label for="number-list">Enter numbers seperated by commas</label>
+        <input type="text" id="number-list" />
+        <button id="calculate-statistics-button">Calculate Statistics</button>
         <p><strong>Summary Statistics:</strong></p>
         <p id="mean">Mean: {{ mean }}</p>
         <p id="median">Median: {{ median }}</p>

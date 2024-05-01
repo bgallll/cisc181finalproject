@@ -1,50 +1,54 @@
-import { EzComponent, BindValue, Click } from "@gsilber/webez";
+import {
+    EzComponent,
+    BindValue,
+    Click,
+    Input,
+    ValueEvent,
+} from "@gsilber/webez";
 import html from "./summary-stats.component.html";
 import css from "./summary-stats.component.css";
+
+interface SummaryStatistics {
+    mean: number;
+    median: number;
+    range: number;
+    dataSetSize: number;
+    standardDeviation: number;
+    variance: number;
+    iqr: number;
+}
 
 export class SummaryStatsComponent extends EzComponent {
     @BindValue("number-list")
     private numberList: string = "";
 
-    @BindValue("mean")
-    private mean: string = "";
-
-    @BindValue("median")
-    private median: string = "";
-
-    @BindValue("range")
-    private range: string = "";
-
-    @BindValue("data-set-size")
-    private dataSetSize: string = "";
-
-    @BindValue("standard-deviation")
-    private standardDeviation: string = "";
-
-    @BindValue("variance")
-    private variance: string = "";
-
-    @BindValue("iqr")
-    private iqr: string = "";
+    private summaryStatistics: SummaryStatistics = {
+        mean: 0,
+        median: 0,
+        range: 0,
+        dataSetSize: 0,
+        standardDeviation: 0,
+        variance: 0,
+        iqr: 0,
+    };
 
     constructor() {
         super(html, css);
     }
 
     @Click("calculate-statistics-button")
-    calculateStatistics(event: Event) {
-        // Prevent the default form submission behavior
-        event.preventDefault();
-
+    calculateStatistics() {
+        console.log(this.numberList);
         const numbers: number[] = this.numberList.split(",").map(Number);
-        this.mean = this.calculateMean(numbers).toString();
-        this.median = this.calculateMedian(numbers).toString();
-        this.range = this.calculateRange(numbers).toString();
-        this.dataSetSize = numbers.length.toString();
-        this.standardDeviation =
-            this.calculateStandardDeviation(numbers).toString();
-        this.variance = this.calculateVariance(numbers).toString();
-        this.iqr = this.calculateIQR(numbers).toString();
+        console.log(numbers);
+        this.summaryStatistics.mean = this.calculateMean(numbers);
+        this.summaryStatistics.median = this.calculateMedian(numbers);
+        this.summaryStatistics.range = this.calculateRange(numbers);
+        this.summaryStatistics.dataSetSize = numbers.length;
+        this.summaryStatistics.standardDeviation =
+            this.calculateStandardDeviation(numbers);
+        this.summaryStatistics.variance = this.calculateVariance(numbers);
+        this.summaryStatistics.iqr = this.calculateIQR(numbers);
     }
 
     private calculateMean(numbers: number[]): number {
@@ -52,7 +56,7 @@ export class SummaryStatsComponent extends EzComponent {
     }
 
     private calculateMedian(numbers: number[]): number {
-        const sortedNumbers: number[] = numbers.slice().sort((a, b) => a - b);
+        const sortedNumbers: number[] = numbers.sort((a, b) => a - b);
         const mid: number = Math.floor(sortedNumbers.length / 2);
         return sortedNumbers.length % 2 === 0 ?
                 (sortedNumbers[mid - 1] + sortedNumbers[mid]) / 2
@@ -76,10 +80,16 @@ export class SummaryStatsComponent extends EzComponent {
     }
 
     private calculateIQR(numbers: number[]): number {
-        const sortedNumbers: number[] = numbers.slice().sort((a, b) => a - b);
+        const sortedNumbers: number[] = numbers.sort((a, b) => a - b);
         const mid: number = Math.floor(sortedNumbers.length / 2);
         const q1: number = this.calculateMedian(sortedNumbers.slice(0, mid));
         const q3: number = this.calculateMedian(sortedNumbers.slice(mid + 1));
         return q3 - q1;
+    }
+
+    @Input("number-list")
+    onNumberListChange(event: ValueEvent) {
+        this.numberList = event.value;
+        console.log(this.numberList);
     }
 }

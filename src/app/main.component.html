@@ -2,9 +2,22 @@
     <div class="header">
         <div class="title">Baxter Gallagher's Data Analyzation Tool</div>
     </div>
-    <p id="example-text">Welcome from the HTML side!</p>
-    <p id="example-target"></p>
-    <div id="boop-button"></div>
-    <div id="calculator"></div>
-    <div id="box"></div>
+    <textarea
+        id="number-list"
+        placeholder="Enter numbers separated by commas"
+    ></textarea>
+
+    <button id="calculate-statistics-button">Calculate Statistics</button>
+
+    <div id="statistics-results">
+        <p><strong>Summary Statistics:</strong></p>
+        <p id="mean">Mean:</p>
+        <p id="median">Median:</p>
+        <p id="mode">Mode:</p>
+        <p id="range">Range:</p>
+        <p id="data-set-size">Data Set Size:</p>
+        <p id="standard-deviation">Standard Deviation:</p>
+        <p id="variance">Variance:</p>
+        <p id="iqr">Interquartile Range (IQR):</p>
+    </div>
 </div>

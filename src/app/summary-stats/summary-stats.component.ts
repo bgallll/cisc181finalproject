@@ -32,7 +32,10 @@ export class SummaryStatsComponent extends EzComponent {
     }
 
     @Click("calculate-statistics-button")
-    calculateStatistics() {
+    calculateStatistics(event: Event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
         const numbers: number[] = this.numberList.split(",").map(Number);
         this.mean = this.calculateMean(numbers).toString();
         this.median = this.calculateMedian(numbers).toString();
@@ -49,7 +52,7 @@ export class SummaryStatsComponent extends EzComponent {
     }
 
     private calculateMedian(numbers: number[]): number {
-        const sortedNumbers: number[] = numbers.sort((a, b) => a - b);
+        const sortedNumbers: number[] = numbers.slice().sort((a, b) => a - b);
         const mid: number = Math.floor(sortedNumbers.length / 2);
         return sortedNumbers.length % 2 === 0 ?
                 (sortedNumbers[mid - 1] + sortedNumbers[mid]) / 2
@@ -73,7 +76,7 @@ export class SummaryStatsComponent extends EzComponent {
     }
 
     private calculateIQR(numbers: number[]): number {
-        const sortedNumbers: number[] = numbers.sort((a, b) => a - b);
+        const sortedNumbers: number[] = numbers.slice().sort((a, b) => a - b);
         const mid: number = Math.floor(sortedNumbers.length / 2);
         const q1: number = this.calculateMedian(sortedNumbers.slice(0, mid));
         const q3: number = this.calculateMedian(sortedNumbers.slice(mid + 1));

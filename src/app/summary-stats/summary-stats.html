@@ -8,12 +8,14 @@
 
     <div id="statistics-results">
         <p><strong>Summary Statistics:</strong></p>
-        <p id="mean">Mean:</p>
-        <p id="median">Median:</p>
-        <p id="range">Range:</p>
-        <p id="data-set-size">Data Set Size:</p>
-        <p id="standard-deviation">Standard Deviation:</p>
-        <p id="variance">Variance:</p>
-        <p id="iqr">Interquartile Range (IQR):</p>
+        <p id="mean">Mean: {{ mean }}</p>
+        <p id="median">Median: {{ median }}</p>
+        <p id="range">Range: {{ range }}</p>
+        <p id="data-set-size">Data Set Size: {{ dataSetSize }}</p>
+        <p id="standard-deviation">
+            Standard Deviation: {{ standardDeviation }}
+        </p>
+        <p id="variance">Variance: {{ variance }}</p>
+        <p id="iqr">Interquartile Range (IQR): {{ iqr }}</p>
     </div>
 </div>

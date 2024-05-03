@@ -1,17 +1,33 @@
 <div>
     <div id="statistics-results">
-        <label for="number-list">Enter numbers seperated by commas</label>
+        <label for="number-list">Enter numbers separated by commas</label>
         <input type="text" id="number-list" />
         <button id="calculate-statistics-button">Calculate Statistics</button>
-        <p><strong>Summary Statistics:</strong></p>
-        <p id="mean">Mean: {{ mean }}</p>
-        <p id="median">Median: {{ median }}</p>
-        <p id="range">Range: {{ range }}</p>
-        <p id="data-set-size">Data Set Size: {{ dataSetSize }}</p>
-        <p id="standard-deviation">
-            Standard Deviation: {{ standardDeviation }}
-        </p>
-        <p id="variance">Variance: {{ variance }}</p>
-        <p id="iqr">Interquartile Range (IQR): {{ iqr }}</p>
+        <div class="summary-statistics">
+            <div class="stat-box">
+                <p>Mean: <span id="mean-data"></span></p>
+            </div>
+            <div class="stat-box">
+                <p>Median: <span id="median-data"></span></p>
+            </div>
+            <div class="stat-box">
+                <p>Range: <span id="range-data"></span></p>
+            </div>
+            <div class="stat-box">
+                <p>Data Set Size: <span id="data-set-size"></span></p>
+            </div>
+            <div class="stat-box">
+                <p>
+                    Standard Deviation:
+                    <span id="standard-deviation-data"></span>
+                </p>
+            </div>
+            <div class="stat-box">
+                <p>Variance: <span id="variance-data"></span></p>
+            </div>
+            <div class="stat-box">
+                <p>Interquartile Range (IQR): <span id="iqr-data"></span></p>
+            </div>
+        </div>
     </div>
 </div>

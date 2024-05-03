@@ -1,0 +1,12 @@
+.stat-box {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.stat-box p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

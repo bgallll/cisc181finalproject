@@ -8,29 +8,30 @@ import {
 import html from "./summary-stats.component.html";
 import css from "./summary-stats.component.css";
 
-interface SummaryStatistics {
-    mean: number;
-    median: number;
-    range: number;
-    dataSetSize: number;
-    standardDeviation: number;
-    variance: number;
-    iqr: number;
-}
-
 export class SummaryStatsComponent extends EzComponent {
     @BindValue("number-list")
     private numberList: string = "";
 
-    private summaryStatistics: SummaryStatistics = {
-        mean: 0,
-        median: 0,
-        range: 0,
-        dataSetSize: 0,
-        standardDeviation: 0,
-        variance: 0,
-        iqr: 0,
-    };
+    @BindValue("mean-data")
+    private mean: string = "";
+
+    @BindValue("median-data")
+    private median: string = "";
+
+    @BindValue("range-data")
+    private range: string = "";
+
+    @BindValue("data-set-size")
+    private dataSetSize: string = "";
+
+    @BindValue("standard-deviation-data")
+    private standardDeviation: string = "";
+
+    @BindValue("variance-data")
+    private variance: string = "";
+
+    @BindValue("iqr-data")
+    private iqr: string = "";
 
     constructor() {
         super(html, css);
@@ -41,14 +42,14 @@ export class SummaryStatsComponent extends EzComponent {
         console.log(this.numberList);
         const numbers: number[] = this.numberList.split(",").map(Number);
         console.log(numbers);
-        this.summaryStatistics.mean = this.calculateMean(numbers);
-        this.summaryStatistics.median = this.calculateMedian(numbers);
-        this.summaryStatistics.range = this.calculateRange(numbers);
-        this.summaryStatistics.dataSetSize = numbers.length;
-        this.summaryStatistics.standardDeviation =
-            this.calculateStandardDeviation(numbers);
-        this.summaryStatistics.variance = this.calculateVariance(numbers);
-        this.summaryStatistics.iqr = this.calculateIQR(numbers);
+        this.mean = this.calculateMean(numbers).toString();
+        this.median = this.calculateMedian(numbers).toString();
+        this.range = this.calculateRange(numbers).toString();
+        this.dataSetSize = numbers.length.toString();
+        this.standardDeviation =
+            this.calculateStandardDeviation(numbers).toString();
+        this.variance = this.calculateVariance(numbers).toString();
+        this.iqr = this.calculateIQR(numbers).toString();
     }
 
     private calculateMean(numbers: number[]): number {
